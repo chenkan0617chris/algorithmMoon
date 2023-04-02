@@ -1,35 +1,39 @@
-import { Box, Button } from "@mui/material";
+import Editor, { DiffEditor } from "@monaco-editor/react";
+import { Box, Button, Container, Grid, Typography } from "@mui/material";
+import { useEffect } from "react";
 import { getInfo } from "../api";
-import AceEditor from 'react-ace';
 
 const Home = () => {
-    const fetchInfo = () => {
-        getInfo().then((res) => {
-            console.log(res);
-        })
-    };
 
-    const editOnChange = (value: any) => {
+    const handleOnchange = (value: any) => {
         console.log(value);
     };
 
-    return (
-        <Box>
-            <Button onClick={fetchInfo}>
-                fetch
-            </Button>
+    useEffect(() => {
+        if(localStorage.getItem('sign-in') !== 'true'){
+            window.location.replace('sign-in');
+        }
+    }, []);
 
-            <AceEditor
-                mode="java"
-                theme="github"
-                onChange={editOnChange}
-                name="editor"
-                editorProps={{
-                    $blockScrolling: true
-                }}
-            ></AceEditor>
+    return (
+        <Box >
+            <Grid container spacing={2}>
+                <Grid item xs={6}>
+                    <Box border={1}>
+                        <Typography>asdasd</Typography>
+                    </Box>
+                </Grid>
+                <Grid item border={1} xs={6}>
+                    <Editor 
+                        height={800}
+                        defaultLanguage='typescript'
+                        defaultValue="// you can do it"
+                        onChange={handleOnchange}
+                        language='typescript'
+                    />
+                </Grid>
+            </Grid>
         </Box>
-        
     )
 }
 
