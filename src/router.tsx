@@ -2,6 +2,7 @@ import { BrowserRouter, useRoutes } from "react-router-dom";
 import Game from "./page/game";
 import Home from "./page/home";
 import SignIn from "./page/signIn/signIn";
+import DefaultAppBar from "./component/appBar";
 
 const route = [
   {
@@ -26,6 +27,7 @@ const MyRouter = () => {
 
 const Routers = (
   <BrowserRouter>
+    <DefaultAppBar/>
     <MyRouter></MyRouter>
   </BrowserRouter>
 )
